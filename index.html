@@ -2120,6 +2120,22 @@ window.addEventListener('load',()=>{
 lucide.createIcons();
 renderBestsellers();
 renderCategories();
+document.addEventListener("DOMContentLoaded", () => {
+      const reveals = document.querySelectorAll(".reveal");
+
+      const revealOnScroll = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target); // Stop observing once revealed
+          }
+        });
+      }, {
+        threshold: 0.15
+      });
+
+      reveals.forEach(el => revealOnScroll.observe(el));
+    });
 </script>
 </body>
 </html>
